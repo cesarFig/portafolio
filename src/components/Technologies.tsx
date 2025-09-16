@@ -87,7 +87,7 @@ export default function Technologies() {
             className="bg-black opacity-90 w-9/12 p-6 rounded-2xl mb-20"
         >
             <p 
-                className={`text-white text-3xl md:text-4xl mb-6 text-center font-bold text-[#32C6AE] transition-all duration-700 ${
+                className={` text-3xl md:text-4xl mb-6 text-center font-bold text-[#32C6AE] transition-all duration-700 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
                 style={{ fontFamily: 'Soloist' }}
@@ -95,7 +95,7 @@ export default function Technologies() {
                 Tecnologías
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                {technologies.map(({ name, icon: Icon, color }, index) => {
+                {technologies.map(({ name, icon: Icon, color }) => {
                     const isHovered = hovered === name;
 
                     return (
