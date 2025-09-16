@@ -38,13 +38,13 @@ export default function BioComponent() {
             ref={sectionRef}
             className="bg-black opacity-90 flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-12 lg:gap-20 p-4 sm:p-6 md:p-8 lg:p-12 w-11/12 sm:w-10/12 lg:w-9/12 max-w-7xl rounded-2xl mt-8 sm:mt-20 lg:mt-20 mx-auto"
         >            
-            <div className={`flex-shrink-0 transition-all duration-700 sm:mt-10 md:mt-10 ${
+            <div className={`flex-shrink-0 transition-all duration-700 sm:mt-10 md:  ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
             }`}>
                 <img
                     src={cesarFigueroaImg}
                     alt="César Figueroa Merino"
-                    className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-84 xl:h-84 rounded-full object-cover shadow-2xl hover:scale-105 transition-transform duration-300"
+                    className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 md: mt-10 lg:h-72 xl:w-84 xl:h-84 rounded-full object-cover shadow-2xl hover:scale-105 transition-transform duration-300"
                     style={{
                         border: '3px solid #32C6AE',
                         boxShadow: `
