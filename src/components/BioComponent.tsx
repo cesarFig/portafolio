@@ -1,45 +1,19 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import cesarFigueroaImg from '../assets/images/cesarfigueroa.jpg';
 
 export default function BioComponent() {
-    const [isVisible, setIsVisible] = useState(false);
-    const sectionRef = useRef<HTMLDivElement>(null);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {                        
-                        setIsVisible(true);
-                    } else {                        
-                        setIsVisible(false);
-                    }
-                });
-            },
-            {
-                threshold: 0.3, 
-                rootMargin: "-50px 0px"
-            }
-        );
-
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
-
-        return () => {
-            if (sectionRef.current) {
-                observer.unobserve(sectionRef.current);
-            }
-        };
+        setIsLoaded(true);
     }, []);
 
     return (
         <div 
-            ref={sectionRef}
             className="bg-black opacity-90 flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-12 lg:gap-20 p-4 sm:p-6 md:p-8 lg:p-12 w-11/12 sm:w-10/12 lg:w-9/12 max-w-7xl rounded-2xl mt-8 sm:mt-20 lg:mt-20 mx-auto"
         >            
-            <div className={`flex-shrink-0 transition-all duration-700 sm:mt-10 md:  ${
-                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
+            <div className={`flex-shrink-0 transition-all duration-700 sm:mt-10 md: ${
+                isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
             }`}>
                 <img
                     src={cesarFigueroaImg}
@@ -59,33 +33,33 @@ export default function BioComponent() {
             <div className="w-full max-w-2xl text-center lg:text-left px-2 sm:px-4">
                 <h1 
                     className={`text-[#32C6AE] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 transition-all duration-700 ${
-                        isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
+                        isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
                     }`}
                     style={{ 
                         fontFamily: 'Death Star',
-                        transitionDelay: isVisible ? '200ms' : '0ms'
+                        transitionDelay: isLoaded ? '200ms' : '0ms'
                     }}
                 >
                     ¡Hola!
                 </h1>                
                 <p 
                     className={`text-white text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-8 transition-all duration-700 ${
-                        isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
+                        isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
                     }`}
                     style={{ 
                         fontFamily: 'Soloist',
-                        transitionDelay: isVisible ? '400ms' : '0ms'
+                        transitionDelay: isLoaded ? '400ms' : '0ms'
                     }}
                 >
                     Soy <span className="text-[#32C6AE] font-semibold">César Figueroa Merino</span>, desarrollador de software. Mi pasión es dar vida a ideas innovadoras, creando soluciones que no solo funcionan, sino que también resuelven problemas de manera eficiente. Siempre estoy en constante aprendizaje, explorando nuevas tecnologías para enfrentar cualquier desafío.
                 </p>                
                 <p 
                     className={`text-white text-sm sm:text-base md:text-lg leading-relaxed italic text-center lg:text-left transition-all duration-700 ${
-                        isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
+                        isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'
                     }`}
                     style={{ 
                         fontFamily: 'Soloist',
-                        transitionDelay: isVisible ? '600ms' : '0ms',                        
+                        transitionDelay: isLoaded ? '600ms' : '0ms',                        
                     }}
                 >
                     "El valor comienza confiando en uno mismo"

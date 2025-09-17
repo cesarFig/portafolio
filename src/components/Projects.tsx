@@ -1,38 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import tailsUpImg from '../assets/images/tailsUpImg.png';
 import nayaImg from '../assets/images/naya.png';
 import syncTeam from '../assets/images/syncTeam.png';
 
 export default function Projects() {
-    const [isVisible, setIsVisible] = useState(false);
-    const sectionRef = useRef<HTMLDivElement>(null);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {                        
-                        setIsVisible(true);
-                    } else {                        
-                        setIsVisible(false);
-                    }
-                });
-            },
-            {
-                threshold: 0.2, 
-                rootMargin: "-50px 0px" 
-            }
-        );
-
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
-
-        return () => {
-            if (sectionRef.current) {
-                observer.unobserve(sectionRef.current);
-            }
-        };
+        setIsLoaded(true);
     }, []);
 
     const projects = [
@@ -58,11 +33,10 @@ export default function Projects() {
 
     return (
         <div 
-            ref={sectionRef}
             id='proyectos' 
             className="bg-black opacity-90 w-9/12 max-w-7xl rounded-2xl py-8 px-4 sm:px-6 lg:px-8 border"
         >
-            <div className={`text-center mb-8 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            <div className={`text-center mb-8 transform transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                 <h2 className="text-3xl md:text-4xl font-bold text-[#32C6AE] mb-2"
                     style={{ fontFamily: 'Soloist' }}>
                     Proyectos
@@ -78,12 +52,12 @@ export default function Projects() {
                 {projects.map((project) => (
                     <div
                         key={project.title}
-                        className={`flex items-center flex-col gap-3 transform transition-all duration-1000 ${isVisible
+                        className={`flex items-center flex-col gap-3 transform transition-all duration-1000 ${isLoaded
                                 ? 'translate-y-0 opacity-100 scale-100'
                                 : 'translate-y-20 opacity-0 scale-95'
                             }`}
                         style={{
-                            transitionDelay: isVisible ? `${project.delay}ms` : "0ms"
+                            transitionDelay: isLoaded ? `${project.delay}ms` : "0ms"
                         }}
                     >
                         <div className="relative group w-full max-w-sm p-4">

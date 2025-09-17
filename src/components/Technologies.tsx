@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
     SiReact,
     SiTailwindcss,
@@ -48,47 +48,22 @@ const technologies: Tech[] = [
     { name: "Postman", icon: SiPostman, color: "#FF6C37" },
     { name: "Figma", icon: SiFigma, color: "#F24E1E" },
 ];
+
 export default function Technologies() {
     const [hovered, setHovered] = useState<string | null>(null);
-    const [isVisible, setIsVisible] = useState(false);
-    const sectionRef = useRef<HTMLDivElement>(null);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {                        
-                        setIsVisible(true);
-                    } else {                        
-                        setIsVisible(false);
-                    }
-                });
-            },
-            {
-                threshold: 0.3, 
-                rootMargin: "-50px 0px" 
-            }
-        );
-
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
-
-        return () => {
-            if (sectionRef.current) {
-                observer.unobserve(sectionRef.current);
-            }
-        };
+        setIsLoaded(true);
     }, []);
 
     return (
         <div 
-            ref={sectionRef}
             className="bg-black opacity-90 w-9/12 p-6 rounded-2xl mb-20"
         >
             <p 
                 className={` text-3xl md:text-4xl mb-6 text-center font-bold text-[#32C6AE] transition-all duration-700 ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
                 style={{ fontFamily: 'Soloist' }}
             >
@@ -102,7 +77,7 @@ export default function Technologies() {
                         <div
                             key={name}
                             className={`flex flex-col items-center gap-2 cursor-pointer p-4 rounded-xl border transition-all duration-700 ${
-                                isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-20 scale-90'
+                                isLoaded ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-20 scale-90'
                             }`}
                             style={{
                                 borderColor: isHovered ? color : "#32C6AE",
